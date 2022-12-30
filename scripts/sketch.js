@@ -1,8 +1,16 @@
-function setup() {
+async function setup() {
 	createCanvas(windowWidth, windowHeight);
 	background(100);
+
 }
 
 function draw() {
-	circle(mouseX, mouseY, 20);
+}
+
+
+async function keyPressed() {
+	if (!sound) {
+		sound = new RandomChordSynthPhrase()
+		sound.listenRandomPhrases(CHORDES_PHRASES)
+	}
 }
