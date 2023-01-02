@@ -45,14 +45,6 @@ class Shape {
         this.size -= SCALE_SIZE
         this.hasFinished = this.hasFinished || this.size < 0
     }
-}
-
-class Triangle extends Shape {
-    constructor() {
-        super()
-        this.randomize()
-    }
-
 
     draw() {
         if (this.hasFinished)
@@ -65,7 +57,13 @@ class Triangle extends Shape {
         }
         else
             this.scaleUp()
+    }
+}
 
+class Triangle extends Shape {
+    constructor() {
+        super()
+        this.randomize()
     }
 
     _draw() {
@@ -78,3 +76,4 @@ class Triangle extends Shape {
         )
     }
 }
+
