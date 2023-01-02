@@ -1,4 +1,5 @@
-var sound;
+var baseSound;
+var mainSound;
 
 const TEMPO = 150
 const TEMPO_PARCENT = 60 / TEMPO
@@ -128,7 +129,7 @@ class RandomChordSynthPhrase {
         return this.phrase.play(phrase)
     }
 
-    async listenRandomPhrases(phrases) {
+    async playRandomPhrases(phrases) {
         while (1) {
             console.log(1)
             const nextTime = this.playRandom(phrases)

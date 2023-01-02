@@ -1,4 +1,4 @@
-const objects = []
+const shapes = []
 
 async function setup() {
 	createCanvas(windowWidth, windowHeight);
@@ -8,21 +8,29 @@ async function setup() {
 function draw() {
 	clear()
 
-	for (const obj of objects)
-		obj.draw()
+	for (const shape of shapes)
+		shape.draw()
 }
 
 
 async function keyPressed() {
-	if (!sound) {
-		sound = new RandomChordSynthPhrase()
-		sound.listenRandomPhrases(CHORDES_PHRASES)
+	if (!mainSound) {
+		baseSound = new RandomChordSynthPhrase()
+		baseSound.playRandomPhrases(CHORDES_PHRASES)
+
+		mainSound = new MultiSynth()
+
+
 		return
 	}
 
 
-	const obj = KeyPressedEvents[key]()
+	const obj = KeyPressedEvents[key]
 
-	if (obj)
-		objects.push(obj)
+	if (obj) {
+		shapes.push(obj.shape())
+		obj.sound().play('C4')
+	}
+
+
 }
