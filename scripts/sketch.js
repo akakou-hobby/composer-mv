@@ -1,28 +1,17 @@
-var t
+const objects = []
 
 async function setup() {
 	createCanvas(windowWidth, windowHeight);
 	background(100);
-
-	t = new Triangle()
 }
 
 function draw() {
-	clear();
-	t.draw()
+	clear()
+
+	for (const obj of objects)
+		obj.draw()
 }
 
-
-const KeyPressedEvents = {
-	'a': () => {
-	},
-	's': () => {
-	},
-	'd': () => {
-	},
-	'f': () => {
-	}
-}
 
 async function keyPressed() {
 	if (!sound) {
@@ -32,7 +21,8 @@ async function keyPressed() {
 	}
 
 
-	if (key == '') {
+	const obj = KeyPressedEvents[key]()
 
-	}
+	if (obj)
+		objects.push(obj)
 }
