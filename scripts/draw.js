@@ -3,7 +3,7 @@ var MAX_SIZE = 0
 const SCALE_SIZE = 20
 
 window.onload =
-    () => MAX_SIZE = windowHeight > windowWidth ? windowHeight : windowWidth
+    () => MAX_SIZE = windowHeight > windowWidth ? windowHeight / 2 : windowWidth / 2
 
 
 class Shape {
@@ -84,5 +84,21 @@ class Circle extends Shape {
         circle(
             this.baseX, this.baseY, this.size
         )
+    }
+}
+
+class Rect extends Shape {
+    constructor() {
+        super()
+        this.randomize()
+    }
+
+    _draw() {
+        rect(
+            this.baseX - this.size / 2,
+            this.baseY - this.size / 2,
+            this.size,
+            this.size
+        );
     }
 }
