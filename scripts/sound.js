@@ -59,6 +59,7 @@ class MultiSynth {
 class MultiSynthChord {
     constructor() {
         this.synths = new MultiSynth()
+        this.nowPlayingChord = []
     }
 
     play(chordNote, time) {
@@ -68,7 +69,7 @@ class MultiSynthChord {
         const notesIndex = NOTES.findIndex(v => v == chordNote.replace('m', ''))
         // console.log("----")
 
-        majarOrMinor.map((d, synthsIndex) => {
+        this.nowPlayingChord = majarOrMinor.map((d, synthsIndex) => {
             var octoveUp = 0
 
             if (synthsIndex == 0 && random(1, 3) > 2) {
@@ -80,7 +81,10 @@ class MultiSynthChord {
             const note = NOTES[notesIndex + d + octoveUp]
             // console.log("index: ", notesIndex + d + octoveUp)
 
+            return note
+        })
 
+        this.nowPlayingChord.map((note, synthsIndex) => {
             const synth = this.synths.synths[synthsIndex]
             synth.play(note, time)
         })
