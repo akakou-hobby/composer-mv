@@ -1,5 +1,4 @@
 
-
 var MAX_SIZE = 0
 const SCALE_SIZE = 20
 
@@ -32,10 +31,6 @@ class Shape {
         )
     }
 
-    draw() {
-        throw new Error('please implement draw')
-    }
-
     scaleUp() {
         this.size += SCALE_SIZE
         this.hasHalfFinished = this.hasHalfFinished || this.size > MAX_SIZE
@@ -49,6 +44,9 @@ class Shape {
     draw() {
         if (this.hasFinished)
             return
+
+        fill(this.color)
+        noStroke()
 
         this._draw()
 
@@ -67,8 +65,6 @@ class Triangle extends Shape {
     }
 
     _draw() {
-        fill(this.color)
-        noStroke()
         triangle(
             this.baseX - this.size / 2, this.baseY + this.size / 2,
             this.baseX, this.baseY - this.size / 2,
@@ -77,3 +73,16 @@ class Triangle extends Shape {
     }
 }
 
+
+class Circle extends Shape {
+    constructor() {
+        super()
+        this.randomize()
+    }
+
+    _draw() {
+        circle(
+            this.baseX, this.baseY, this.size
+        )
+    }
+}
