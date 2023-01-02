@@ -36,11 +36,9 @@ class Synth {
     play(note, time) {
         this.synth.triggerAttackRelease(note, "8n", time)
     }
-
 }
 
-
-class MultiSynthChord {
+class MultiSynth {
     constructor() {
         this.synths = [
             new Synth(),
@@ -53,6 +51,13 @@ class MultiSynthChord {
     async start() {
         for (const synth of this.synths)
             await synth.start()
+    }
+
+}
+
+class MultiSynthChord {
+    constructor() {
+        this.synths = new MultiSynth()
     }
 
     play(chordNote, time) {
@@ -75,7 +80,7 @@ class MultiSynthChord {
             // console.log("index: ", notesIndex + d + octoveUp)
 
 
-            const synth = this.synths[synthsIndex]
+            const synth = this.synths.synths[synthsIndex]
             synth.play(note, time)
         })
 
@@ -88,6 +93,7 @@ class MultiSynthPhrase {
     constructor() {
         this.chord = new MultiSynthChord()
     }
+
 
     play(phrase) {
         let nextTime = Tone.now()
