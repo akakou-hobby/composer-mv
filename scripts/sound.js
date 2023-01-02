@@ -16,10 +16,6 @@ const CHORDES_PHRASES =
         ['Am3', 'F3', 'C4', 'G3'],
         ['F3', 'C4', 'G3', 'Am3'],
         ['C4', 'Am3', 'Dm3', 'G3'],
-        // ['C4', 'Em3', 'Dm3', 'G3'],
-        // ['C4', 'Am3', 'F3', 'G3'],
-        // ['C4', 'G3', 'C4', 'F3'],
-        // ['C4', 'G3', 'Am3', 'F3'],
     ]
 
 const DIFF_CORDS = {
