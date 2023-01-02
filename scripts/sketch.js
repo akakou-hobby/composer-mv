@@ -20,16 +20,21 @@ async function keyPressed() {
 
 		mainSound = new MultiSynth()
 
-
 		return
 	}
 
 
-	const obj = KeyPressedEvents[key]
+	const index = findIndexByPressKey(key)
 
-	if (obj) {
-		shapes.push(obj.shape())
-		obj.sound().play('C4')
+	if (index != -1) {
+		const chordNotes = baseSound.phrase.chord.nowPlayingChord
+		const sortedNotes = sortNotes(chordNotes)
+		const note = sortedNotes[index].slice(0, -1) + "6"
+
+		shapes.push(RelationBetweenKeyAndShape[index]())
+		mainSound.synths[index].play(note)
+	} else {
+		console.error(`'${key}' is not set up key`)
 	}
 
 
