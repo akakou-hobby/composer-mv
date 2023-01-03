@@ -1,11 +1,17 @@
-const KeyPressedEventsKeys = ['a', 's', 'd']
-const findIndexByPressKey = (target) => KeyPressedEventsKeys.findIndex(v => v == target)
+const KeyPressedEventObjects = {
+    'a': {
+        shape: () => new Triangle(),
+        index: 0,
 
+    },
+    's': {
+        shape: () => new Circle(),
+        index: 1,
+    },
+    'd': {
+        shape: () => new Rect(),
+        index: 2,
+    }
+}
 
-const RelationBetweenKeyAndShape =
-    [
-        () => new Triangle,
-        () => new Circle,
-        () => new Rect,
-    ]
 

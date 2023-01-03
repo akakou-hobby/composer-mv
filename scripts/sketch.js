@@ -24,20 +24,20 @@ async function keyPressed() {
 	}
 
 
-	const index = findIndexByPressKey(key)
+	const obj = KeyPressedEventObjects[key]
 
-	if (index != -1) {
-		const chordNotes = baseSound.phrase.chord.nowPlayingChord
-		const sortedNotes = sortNotes(chordNotes)
-		const note = sortedNotes[index].slice(0, -1) + "6"
-		mainSound.synths[index].play(note)
-
-		const shape = RelationBetweenKeyAndShape[index]()
-		shape.text = note
-		shapes.push(shape)
-	} else {
+	if (!obj) {
 		console.error(`'${key}' is not set up key`)
+		return
 	}
 
+	const chordNotes = baseSound.phrase.chord.nowPlayingChord
+	const sortedNotes = sortNotes(chordNotes)
 
+	const note = sortedNotes[obj.index].slice(0, -1) + "6"
+	mainSound.synths[obj.index].play(note)
+
+	const shape = obj.shape()
+	shape.text = note
+	shapes.push(shape)
 }
