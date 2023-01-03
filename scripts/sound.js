@@ -28,6 +28,7 @@ const DIFF_CORDS = {
 class Synth {
     constructor() {
         this.synth = new Tone.Synth().toDestination()
+        this.logs = []
     }
 
     async start() {
@@ -36,13 +37,27 @@ class Synth {
 
     play(note, time) {
         this.synth.triggerAttackRelease(note, "8n", time)
+        this.logs.push({
+            note,
+            time
+        })
+    }
+
+    getPlayingNote() {
+        const playingLog = this.logs.reduce((previous, current) => {
+            if (current.time < Tone.now() && current.time > previous.time)
+                return current
+            else
+                return previous
+        })
+
+        return playingLog.note
     }
 }
 
 class MultiSynth {
     constructor() {
         this.synths = [
-            new Synth(),
             new Synth(),
             new Synth(),
             new Synth(),
@@ -59,7 +74,6 @@ class MultiSynth {
 class MultiSynthChord {
     constructor() {
         this.synths = new MultiSynth()
-        this.nowPlayingChord = []
     }
 
     play(chordNote, time) {
@@ -67,9 +81,8 @@ class MultiSynthChord {
         const majarOrMinor = isMajaor ? DIFF_CORDS.major : DIFF_CORDS.minor
 
         const notesIndex = NOTES.findIndex(v => v == chordNote.replace('m', ''))
-        // console.log("----")
 
-        this.nowPlayingChord = majarOrMinor.map((d, synthsIndex) => {
+        majarOrMinor.map((d, synthsIndex) => {
             var octoveUp = 0
 
             if (synthsIndex == 0 && random(1, 3) > 2) {
@@ -79,15 +92,16 @@ class MultiSynthChord {
             }
 
             const note = NOTES[notesIndex + d + octoveUp]
-            return note
-        })
-
-        this.nowPlayingChord.map((note, synthsIndex) => {
             const synth = this.synths.synths[synthsIndex]
             synth.play(note, time)
+            return note
         })
+    }
 
-        // console.log("----")
+    getPlayingNotes() {
+        return this.synths.synths.map(v => {
+            return v.getPlayingNote()
+        })
     }
 }
 

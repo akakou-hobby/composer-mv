@@ -31,7 +31,7 @@ async function keyPressed() {
 		return
 	}
 
-	const chordNotes = baseSound.phrase.chord.nowPlayingChord
+	const chordNotes = baseSound.phrase.chord.getPlayingNotes()
 	const sortedNotes = sortNotes(chordNotes)
 
 	const note = sortedNotes[obj.index].slice(0, -1) + "6"
