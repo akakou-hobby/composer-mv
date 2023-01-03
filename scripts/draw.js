@@ -7,7 +7,7 @@ window.onload =
 
 
 class Shape {
-    constructor() {
+    constructor(randomize = true) {
         this.baseX = 0
         this.baseY = 0
 
@@ -17,6 +17,9 @@ class Shape {
         this.hasHalfFinished = false
         this.hasFinished = false
         this.text = ""
+
+        if (randomize)
+            this.randomize()
     }
 
     randomize() {
@@ -66,11 +69,6 @@ class Shape {
 }
 
 class Triangle extends Shape {
-    constructor() {
-        super()
-        this.randomize()
-    }
-
     _draw() {
         triangle(
             this.baseX - this.size / 2, this.baseY + this.size / 2,
@@ -82,11 +80,6 @@ class Triangle extends Shape {
 
 
 class Circle extends Shape {
-    constructor() {
-        super()
-        this.randomize()
-    }
-
     _draw() {
         circle(
             this.baseX, this.baseY, this.size
@@ -95,11 +88,6 @@ class Circle extends Shape {
 }
 
 class Rect extends Shape {
-    constructor() {
-        super()
-        this.randomize()
-    }
-
     _draw() {
         rect(
             this.baseX - this.size / 2,
