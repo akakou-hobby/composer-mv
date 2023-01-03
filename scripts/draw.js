@@ -16,6 +16,7 @@ class Shape {
 
         this.hasHalfFinished = false
         this.hasFinished = false
+        this.text = ""
     }
 
     randomize() {
@@ -49,6 +50,12 @@ class Shape {
         noStroke()
 
         this._draw()
+
+        fill(color("white"))
+        textSize(this.size / 2);
+        textAlign(CENTER);
+        text(this.text, this.baseX, this.baseY + this.size / 3);
+
 
         if (this.hasHalfFinished) {
             this.scaleDown()

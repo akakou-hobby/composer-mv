@@ -79,8 +79,6 @@ class MultiSynthChord {
             }
 
             const note = NOTES[notesIndex + d + octoveUp]
-            // console.log("index: ", notesIndex + d + octoveUp)
-
             return note
         })
 

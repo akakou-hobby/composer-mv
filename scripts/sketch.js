@@ -30,9 +30,11 @@ async function keyPressed() {
 		const chordNotes = baseSound.phrase.chord.nowPlayingChord
 		const sortedNotes = sortNotes(chordNotes)
 		const note = sortedNotes[index].slice(0, -1) + "6"
-
-		shapes.push(RelationBetweenKeyAndShape[index]())
 		mainSound.synths[index].play(note)
+
+		const shape = RelationBetweenKeyAndShape[index]()
+		shape.text = note
+		shapes.push(shape)
 	} else {
 		console.error(`'${key}' is not set up key`)
 	}
