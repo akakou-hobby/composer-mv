@@ -55,7 +55,7 @@ class Shape {
         this._draw()
 
         fill(color("white"))
-        textSize(this.size / 2);
+        textSize(this.size / 3);
         textAlign(CENTER);
         text(this.text, this.baseX, this.baseY + this.size / 3);
 
