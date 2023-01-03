@@ -85,11 +85,11 @@ class MultiSynthChord {
         majarOrMinor.map((d, synthsIndex) => {
             var octoveUp = 0
 
-            if (synthsIndex == 0 && random(1, 3) > 2) {
-                const half = NOTES.findIndex(v => v == 'D#')
-                const base = BASE_NOTES.length + 1
-                octoveUp = notesIndex < half ? base : -base
-            }
+            // if (synthsIndex == 0 && random(1, 3) > 2) {
+            //     const half = NOTES.findIndex(v => v == 'D#')
+            //     const base = BASE_NOTES.length + 1
+            //     octoveUp = notesIndex < half ? base : -base
+            // }
 
             const note = NOTES[notesIndex + d + octoveUp]
             const synth = this.synths.synths[synthsIndex]
