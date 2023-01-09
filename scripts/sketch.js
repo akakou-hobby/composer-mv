@@ -3,10 +3,15 @@ const shapes = []
 async function setup() {
 	createCanvas(windowWidth, windowHeight);
 	background(100);
+
+	let a = createA('http://akakou-hobby.github.com/composer-mv/ja.html', 'How to use')
+	a.position(0, 0)
+
 }
 
 function draw() {
 	clear()
+
 
 	for (const shape of shapes)
 		shape.draw()
