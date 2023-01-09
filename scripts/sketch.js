@@ -1,10 +1,12 @@
 const shapes = []
 
+const DOCUMENT_URL = 'https://akakou-hobby.github.io/composer-mv/doc/ja.html'
+
 async function setup() {
 	createCanvas(windowWidth, windowHeight);
 	background(100);
 
-	let a = createA('http://akakou-hobby.github.com/composer-mv/ja.html', 'How to use')
+	let a = createA(DOCUMENT_URL, 'How to use')
 	a.position(0, 0)
 
 }
